@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# session workspaces — never commit user files
+/workspace/
+
+# AI generated output folders
+/output/
+/test-output/

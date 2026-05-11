@@ -1,26 +1,142 @@
 @import "tailwindcss";
+@import "@fontsource/sofia-sans/400.css";
+@import "@fontsource/sofia-sans/500.css";
+@import "@fontsource/sofia-sans/700.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Mastercard Surfaces */
+  --canvas-cream: #F3F0EE;
+  --lifted-cream: #FCFBFA;
+  --white: #FFFFFF;
+  --soft-bone: #F4F4F4;
+
+  /* Text & UI */
+  --ink-black: #141413;
+  --charcoal: #262627;
+  --slate-gray: #696969;
+  --granite: #555555;
+
+  /* Accents */
+  --signal-orange: #CF4500;
+  --signal-light: #F37338;
+  --link-blue: #3860BE;
+
+  /* Editor Dark */
+  --editor-bg: #1E1E1E;
+  --editor-surface: #252526;
+  --editor-active: #2C2C2D;
+
+  /* Application */
+  --background: var(--canvas-cream);
+  --foreground: var(--ink-black);
 }
 
 @theme inline {
+  /* Colors */
+  --color-canvas: var(--canvas-cream);
+  --color-lifted: var(--lifted-cream);
+  --color-white: var(--white);
+  --color-bone: var(--soft-bone);
+  --color-ink: var(--ink-black);
+  --color-charcoal: var(--charcoal);
+  --color-slate: var(--slate-gray);
+  --color-granite: var(--granite);
+  --color-signal: var(--signal-orange);
+  --color-signal-light: var(--signal-light);
+  --color-link: var(--link-blue);
+  --color-editor-bg: var(--editor-bg);
+  --color-editor-surface: var(--editor-surface);
+  --color-editor-active: var(--editor-active);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /* Fonts */
+  --font-sans: "Sofia Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Border Radius Scale */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-3xl: 40px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-nav: rgba(0, 0, 0, 0.04) 0px 4px 24px 0px;
+  --shadow-elevated: rgba(0, 0, 0, 0.08) 0px 24px 48px 0px;
+  --shadow-card: rgba(0, 0, 0, 0.06) 0px 8px 32px 0px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  font-weight: 450;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--slate-gray);
+  border-radius: 4px;
+  opacity: 0.3;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--charcoal);
+}
+
+/* Animation Utilities */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.1); }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out forwards;
+}
+
+/* Focus Styles */
+*:focus-visible {
+  outline: 2px solid var(--ink-black);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: var(--signal-light);
+  color: var(--white);
 }

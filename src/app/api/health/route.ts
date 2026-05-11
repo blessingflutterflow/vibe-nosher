@@ -37,7 +37,12 @@ async function checkFileWriteRead(): Promise<CheckResult> {
 
 async function checkFsListRoute(): Promise<CheckResult> {
   try {
-    const res = await fetch('http://localhost:3000/api/fs/list', {
+    // Use Railway's port env var — localhost:3000 doesn't work in production
+    const port = process.env.PORT || '3000';
+    const base = process.env.RAILWAY_PUBLIC_DOMAIN
+      ? `https://${process.env.RAILWAY_PUBLIC_DOMAIN}`
+      : `http://localhost:${port}`;
+    const res = await fetch(`${base}/api/fs/list`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ sessionId: '__health_check__', path: '.' }),
